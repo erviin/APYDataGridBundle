@@ -516,7 +516,10 @@ class Grid implements GridInterface
 
         $this->createHash();
 
-        $this->requestData = (array) $this->request->get($this->hash);
+        $this->requestData = (array) $this->request->request->all($this->hash);
+        if(empty($this->requestData)) {
+            $this->requestData = (array)$this->request->query->all($this->hash);
+        }
 
         $this->processPersistence();
 
@@ -1523,7 +1526,7 @@ class Grid implements GridInterface
     public function getRouteUrl()
     {
         if ($this->routeUrl === null) {
-            $this->routeUrl = $this->router->generate((string) $this->request->get('_route'), $this->getRouteParameters());
+            $this->routeUrl = $this->router->generate((string) $this->request->attributes->get('_route'), $this->getRouteParameters());
         }
 
         return $this->routeUrl;
