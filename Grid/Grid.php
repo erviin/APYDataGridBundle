@@ -320,7 +320,7 @@ class Grid implements GridInterface
      * @param string                   $id        set if you are using more then one grid inside controller
      * @param GridConfigInterface|null $config    The grid configuration.
      */
-    public function __construct($container, AuthorizationCheckerInterface $securityContext, Environment $twig, $id = '', GridConfigInterface $config = null)
+    public function __construct($container, AuthorizationCheckerInterface $securityContext, Environment $twig, $id = '', ?GridConfigInterface $config = null)
     {
         // @todo: why the whole container is injected?
         $this->container = $container;
@@ -2134,7 +2134,7 @@ class Grid implements GridInterface
      *
      * @return Response|array A Response instance
      */
-    public function getGridResponse($param1 = null, $param2 = null, Response $response = null)
+    public function getGridResponse($param1 = null, $param2 = null, ?Response $response = null)
     {
         $isReadyForRedirect = $this->isReadyForRedirect();
 
